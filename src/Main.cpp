@@ -6,7 +6,7 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "sorting-test", sf::Style::Close | sf::Style::Resize);
 
-	Graph graph(20, window);
+	Graph graph(300, window);
 	sf::Clock clock;
 	float deltaTime = 0.0f;
 
@@ -29,8 +29,12 @@ int main()
 			window.close();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			graph.Draw();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))
+			graph.Log();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 			graph.Sort();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			graph.Quick();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 			graph.Shuffle();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
