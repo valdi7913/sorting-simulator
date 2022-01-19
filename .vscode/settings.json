@@ -7,7 +7,6 @@
 	"debug.toolBarLocation": "docked",
 	"editor.tabSize": 4,
 	"editor.insertSpaces": false,
-	"editor.formatOnSave": true,
 	"files.encoding": "utf8",
 	"files.trimTrailingWhitespace": true,
 	"files.eol": "\n",
@@ -22,12 +21,15 @@
 		"**/Thumbs.db": true
 	},
 	"files.associations": {
+		"*.scss": "sass",
 		"*.json": "jsonc",
 		"*.stats": "cpp",
 		"*.desktop": "properties",
-		".clang-format": "yaml"
+		".clang-format": "yaml",
+		"locale": "cpp",
+		"memory": "cpp",
+		"string": "cpp"
 	},
-	"terminal.integrated.automationShell.windows": "C:/Program Files/Git/bin/bash.exe",
 	"terminal.integrated.env.windows": {
 		"Path": "C:/mingw32/bin;C:/SFML-2.5.1/bin"
 	},

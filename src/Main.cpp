@@ -1,41 +1,42 @@
-#include "Platform/Platform.hpp"
+#include <Platform/IPlatform.hpp>
+#include <iostream>
+#include "Graph.h"
 
 int main()
 {
-	util::Platform platform;
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "sorting-test", sf::Style::Close | sf::Style::Resize);
 
-#if defined(_DEBUG)
-	std::cout << "Hello World!" << std::endl;
-#endif
+	Graph graph(20, window);
+	sf::Clock clock;
+	float deltaTime = 0.0f;
 
-	sf::RenderWindow window;
-	// in Windows at least, this must be called before creating the window
-	float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
-	// Use the screenScalingFactor
-	window.create(sf::VideoMode(200.0f * screenScalingFactor, 200.0f * screenScalingFactor), "SFML works!");
-	platform.setIcon(window.getSystemHandle());
-
-	sf::CircleShape shape(window.getSize().x / 2);
-	shape.setFillColor(sf::Color::White);
-
-	sf::Texture shapeTexture;
-	shapeTexture.loadFromFile("content/sfml.png");
-	shape.setTexture(&shapeTexture);
-
-	sf::Event event;
 
 	while (window.isOpen())
 	{
-		while (window.pollEvent(event))
+		deltaTime = clock.restart().asSeconds();
+
+		sf::Event evt;
+		while (window.pollEvent(evt))
 		{
-			if (event.type == sf::Event::Closed)
+			if (evt.type == sf::Event::Closed)
 				window.close();
+			else if (evt.type == sf::Event::Resized)
+				printf("Window rezied to %d x %d\n", evt.size.width, evt.size.height);
+
 		}
 
-		window.clear();
-		window.draw(shape);
-		window.display();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			window.close();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+			graph.Draw();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			graph.Sort();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			graph.Shuffle();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::O))
+			graph.Inc();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+			graph.Dec();
 	}
-
 	return 0;
 }
