@@ -47,5 +47,7 @@
 	},
 	"[applescript]": {
 		"files.encoding": "utf8"
-	}
+	},
+	"editor.wordWrap": "on",
+	"search.collapseResults": "auto"
 }
